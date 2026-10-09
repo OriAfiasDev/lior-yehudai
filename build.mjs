@@ -32,6 +32,9 @@ async function main() {
   const source = createSource(process.env, { contentDir: join(root, 'content') });
   const data = await loadSiteData(source);
   if (!data.settings.seo.siteUrl && process.env.SITE_URL) data.settings.seo.siteUrl = process.env.SITE_URL;
+  // A base without a trailing slash makes new URL('assets/x', base) drop the last path
+  // segment (Pages passes ".../lior-yehudai"), so normalize it once here.
+  if (data.settings.seo.siteUrl) data.settings.seo.siteUrl = data.settings.seo.siteUrl.replace(/\/*$/, '/');
 
   const errors = validate(data);
   if (errors.length) throw new Error(`Content is invalid:\n  - ${errors.join('\n  - ')}`);
