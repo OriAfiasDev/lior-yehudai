@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+dist/
+.render/
+# Sigalit (AlefAlefAlef free license) may be embedded in the site but not redistributed,
+# so the font files stay out of the public repo. CI writes them from repository secrets.
+public/assets/fonts/sigalit-*
+# the font vendor's license document
+licenses/
