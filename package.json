@@ -1,0 +1,19 @@
+{
+  "name": "lior-yehudai",
+  "private": true,
+  "type": "module",
+  "description": "אתר עמוד אחד לליאור יהודאי כהן, קלינאית תקשורת. תוכן ועיצוב כנתונים, נבנה לאתר סטטי.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node dev.mjs",
+    "render": "node build.mjs",
+    "check": "node build.mjs --strict --out .render",
+    "build": "node build.mjs --out .render --quiet && cd .render && OUT_DIR=../dist node ../.github/scripts/optimize.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "html-minifier-terser": "^7.2.0"
+  }
+}
