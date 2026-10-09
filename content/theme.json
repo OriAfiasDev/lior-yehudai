@@ -1,0 +1,65 @@
+{
+  "_note": "עיצוב כנתונים. כל ערך כאן הופך למשתנה CSS (--paper, --font-display וכו'). מערכת ניהול עתידית יכולה לשנות צבעים, פונטים וסקאלה בלי לגעת ב-CSS.",
+  "colors": {
+    "paper": "#F4EDE3",
+    "paperDeep": "#EBE1D3",
+    "ink": "#2B231E",
+    "inkSoft": "#5F544B",
+    "clay": "#A65D41",
+    "clayDeep": "#7A3F2A",
+    "line": "#D8CAB8"
+  },
+  "fonts": {
+    "display": {
+      "family": "Sigalit",
+      "fallback": "\"Assistant\", \"Arial Hebrew\", system-ui, sans-serif",
+      "faces": [
+        {
+          "weight": 400,
+          "style": "normal",
+          "preload": true,
+          "src": [
+            { "url": "assets/fonts/sigalit-regular-fm.woff2", "format": "woff2" },
+            { "url": "assets/fonts/sigalit-regular-fm.woff", "format": "woff" }
+          ]
+        }
+      ]
+    },
+    "body": {
+      "family": "Assistant",
+      "fallback": "\"Arial Hebrew\", system-ui, -apple-system, \"Segoe UI\", Arial, sans-serif",
+      "googleFonts": "Assistant:wght@400;600;700"
+    }
+  },
+  "typeScale": {
+    "_note": "סקאלה זורמת: בסיס ויחס במובייל (360px) ובדסקטופ (1280px)",
+    "minViewport": 360,
+    "maxViewport": 1280,
+    "minBase": 18,
+    "maxBase": 19,
+    "minRatio": 1.2,
+    "maxRatio": 1.333,
+    "steps": [-2, -1, 0, 1, 2, 3, 4, 5, 6]
+  },
+  "space": {
+    "3xs": 4,
+    "2xs": 8,
+    "xs": 12,
+    "s": 16,
+    "m": 24,
+    "l": 32,
+    "xl": 48,
+    "2xl": 64,
+    "3xl": 96,
+    "4xl": 144
+  },
+  "radius": {
+    "s": 3,
+    "arch": 999
+  },
+  "motion": {
+    "durationShort": 220,
+    "durationLong": 900,
+    "ease": "cubic-bezier(.25, .1, .25, 1)"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "locale": "he",
+  "dir": "rtl",
+  "business": {
+    "name": "ליאור יהודאי כהן",
+    "title": "קלינאית תקשורת",
+    "clinic": "קליניקה פרטית",
+    "audience": "ילדים",
+    "address": {
+      "street": "רוקח 17",
+      "city": "רמת גן",
+      "country": "IL"
+    },
+    "phone": {
+      "display": "052-454-9118",
+      "e164": "+972524549118"
+    },
+    "whatsapp": {
+      "number": "972524549118",
+      "message": "היי ליאור, הגעתי מהאתר ואשמח לשיחת ייעוץ."
+    },
+    "hours": {
+      "$missing": "שעות פעילות (שאלה פתוחה לליאור)"
+    },
+    "google": {
+      "rating": 5.0,
+      "reviewCount": 29,
+      "profileQuery": "ליאור יהודאי כהן קלינאית תקשורת רמת גן",
+      "profileUrl": null,
+      "_note": "profileUrl ריק = קישור חיפוש לפי profileQuery. להחליף בקישור הישיר לכרטיס הגוגל של ליאור"
+    }
+  },
+  "ui": {
+    "skipLink": "דילוג לתוכן",
+    "navLabel": "ניווט בעמוד",
+    "headerCta": "וואטסאפ",
+    "dockCta": "לשיחת ייעוץ בוואטסאפ",
+    "dockPhone": "להתקשר",
+    "hoursLabel": "שעות",
+    "navigateLabel": "הגעה",
+    "waze": "ניווט בוויז",
+    "googleMaps": "פתיחה בגוגל מפות",
+    "mapTitle": "מפה: {{address}}",
+    "reviewsRailLabel": "ביקורות מגוגל, אפשר לגלול הצידה",
+    "opensInNewTab": "(נפתח בחלון חדש)",
+    "footerLine": "{{name}}, {{title}} · {{address}}",
+    "worriesProgress": "מתוך",
+    "worriesIndexLabel": "קפיצה לנושא"
+  },
+  "seo": {
+    "title": "ליאור יהודאי כהן, קלינאית תקשורת לילדים ברמת גן",
+    "description": "קלינאית תקשורת לילדים ברמת גן. דיבור, שפה, גמגום, אילמות סלקטיבית, תפקודי פה ואכילה. בקצב של הילד, עם הדרכה צמודה להורים.",
+    "siteUrl": null,
+    "ogImage": "assets/img/og.png",
+    "themeColor": "#F4EDE3",
+    "_note": "siteUrl ריק עד שיהיה דומיין. כשימולא, ייווצרו canonical ו-og:url"
+  }
+}

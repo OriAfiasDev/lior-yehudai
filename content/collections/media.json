@@ -1,0 +1,128 @@
+{
+  "_note": "ספריית מדיה. תמונה מוצגת רק כש-src מלא וגם consent=true. variants = גדלים מוכנים ל-srcset (מערכת ניהול עם CDN תמונות יכולה לייצר אותם לבד). focal = נקודת המיקוד בחיתוך הקשת. alt מתאר את מה שרואים בתמונה, בלי שמות ילדים.",
+  "items": [
+    {
+      "id": "lior-cards",
+      "src": "assets/img/photos/lior-cards-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/lior-cards-400.webp", "width": 400 },
+        { "src": "assets/img/photos/lior-cards-800.webp", "width": 800 },
+        { "src": "assets/img/photos/lior-cards-1080.webp", "width": 1080 }
+      ],
+      "alt": "ליאור מחייכת ומחזיקה כרטיסיות משחק, מול ילד שיושב בגבו למצלמה",
+      "width": 1080,
+      "height": 1394,
+      "focal": "50% 35%",
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "floor-play",
+      "src": "assets/img/photos/floor-play-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/floor-play-400.webp", "width": 400 },
+        { "src": "assets/img/photos/floor-play-800.webp", "width": 800 },
+        { "src": "assets/img/photos/floor-play-1200.webp", "width": 1200 }
+      ],
+      "alt": "ליאור יושבת על הרצפה ומשחקת עם ילדה במטבח צעצוע",
+      "width": 1800,
+      "height": 2400,
+      "focal": "55% 30%",
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "lior-portrait",
+      "src": "assets/img/photos/lior-portrait-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/lior-portrait-400.webp", "width": 400 },
+        { "src": "assets/img/photos/lior-portrait-800.webp", "width": 800 },
+        { "src": "assets/img/photos/lior-portrait-1077.webp", "width": 1077 }
+      ],
+      "alt": "ליאור יהודאי כהן",
+      "width": 1077,
+      "height": 1077,
+      "focal": "62% 45%",
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור אישרה (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "board-game",
+      "src": "assets/img/photos/board-game-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/board-game-400.webp", "width": 400 },
+        { "src": "assets/img/photos/board-game-800.webp", "width": 800 },
+        { "src": "assets/img/photos/board-game-1200.webp", "width": 1200 }
+      ],
+      "alt": "ליאור יושבת עם שני ילדים ליד שולחן עם משחקי לוח בקליניקה",
+      "width": 2400,
+      "height": 1893,
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "reading-together",
+      "src": "assets/img/photos/reading-together-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/reading-together-400.webp", "width": 400 },
+        { "src": "assets/img/photos/reading-together-800.webp", "width": 800 },
+        { "src": "assets/img/photos/reading-together-1200.webp", "width": 1200 }
+      ],
+      "alt": "ליאור קוראת ספר עם שתי ילדות ליד השולחן",
+      "width": 1942,
+      "height": 1401,
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "little-hands",
+      "src": "assets/img/photos/little-hands-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/little-hands-400.webp", "width": 400 },
+        { "src": "assets/img/photos/little-hands-800.webp", "width": 800 },
+        { "src": "assets/img/photos/little-hands-1200.webp", "width": 1200 }
+      ],
+      "alt": "ליאור וילדה קטנה מחזיקות ידיים ליד שולחן משחק",
+      "width": 2400,
+      "height": 1800,
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "group-articulation",
+      "src": "assets/img/photos/group-articulation-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/group-articulation-400.webp", "width": 400 },
+        { "src": "assets/img/photos/group-articulation-800.webp", "width": 800 },
+        { "src": "assets/img/photos/group-articulation-1200.webp", "width": 1200 }
+      ],
+      "alt": "ליאור מדגימה תנועות פה וידיים מול קבוצת ילדים סביב שולחן",
+      "width": 2400,
+      "height": 2058,
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    },
+    {
+      "id": "group-table",
+      "src": "assets/img/photos/group-table-800.webp",
+      "variants": [
+        { "src": "assets/img/photos/group-table-400.webp", "width": 400 },
+        { "src": "assets/img/photos/group-table-800.webp", "width": 800 },
+        { "src": "assets/img/photos/group-table-1080.webp", "width": 1080 }
+      ],
+      "alt": "ליאור עם קבוצת ילדים סביב שולחן עם כוסות וצלחות",
+      "width": 1080,
+      "height": 803,
+      "consent": true,
+      "source": "Google Business Profile, תוכן של הבעלים",
+      "consentNote": "ליאור וההורים אישרו פרסום באתר (לפי אורי, 9.10.2026)"
+    }
+  ]
+}
