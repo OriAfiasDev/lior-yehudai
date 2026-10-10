@@ -71,13 +71,12 @@ from the studio too, so a code change never brings back old copy from `content/`
   from nowhere): it renders the editor's draft with the same templates and stylesheet, plus
   `data-afias-*` attributes for selecting and editing in place. Those attributes exist only there
   (`createContext(data, { annotate: true })`); the production HTML doesn't change.
-  The studio's preview URL is `https://oriafiasdev.github.io/lior-yehudai/_afias/preview.html`
-  (the afias.dev domain forwards without the path).
+  The studio's preview URL is `https://lior-yehudai.afias.dev/_afias/preview.html`.
 - **Visit counter:** with `STUDIO_URL` and `SITE_SLUG` set (CI sets both), the page loads the
   studio's `beacon.js` (deferred, ~600 B, no cookies): daily page views and clicks on the
   `data-cta` WhatsApp/phone links, shown in the studio when "מונה ביקורים" is on. The studio only
   counts requests from the domains listed under "דומיינים שמורשים לשלוח פניות", which must include
-  `https://oriafiasdev.github.io` (the afias.dev domain redirects there, so that is the origin).
+  the site's domain (`https://lior-yehudai.afias.dev`, the Pages custom domain).
 - Sections added in the studio get ids like `reviewList_k3x9a2b`, which the validator accepts.
 
 What the studio gets to control:
