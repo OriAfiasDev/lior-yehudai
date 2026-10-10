@@ -1,0 +1,421 @@
+{
+  "version": 1,
+  "pages": [{ "id": "home", "title": "דף הבית", "path": "/" }],
+  "theme": {
+    "fields": [
+      {
+        "key": "colors",
+        "label": "צבעים",
+        "type": "group",
+        "fields": [
+          { "key": "paper", "label": "רקע", "type": "color", "presets": ["#F4EDE3"] },
+          { "key": "paperDeep", "label": "רקע משני (סקשנים מובלטים)", "type": "color", "presets": ["#EBE1D3"] },
+          { "key": "ink", "label": "טקסט", "type": "color", "presets": ["#2B231E"] },
+          { "key": "inkSoft", "label": "טקסט משני", "type": "color", "presets": ["#5F544B"] },
+          { "key": "clay", "label": "צבע מותג (קו הליווי, כוכבים)", "type": "color", "presets": ["#A65D41"] },
+          { "key": "clayDeep", "label": "צבע מותג כהה (כפתורים, קישורים)", "type": "color", "presets": ["#7A3F2A"] },
+          { "key": "line", "label": "קווים וגבולות", "type": "color", "presets": ["#D8CAB8"] }
+        ]
+      },
+      {
+        "key": "radius",
+        "label": "פינות",
+        "type": "group",
+        "fields": [{ "key": "s", "label": "עיגול פינות של כפתורים וכרטיסים", "type": "number", "min": 0, "max": 16, "step": 1, "unit": "px" }]
+      }
+    ]
+  },
+  "settings": {
+    "fields": [
+      {
+        "key": "business",
+        "label": "פרטי העסק",
+        "type": "group",
+        "fields": [
+          { "key": "name", "label": "שם", "type": "text", "maxLength": 40, "required": true },
+          { "key": "title", "label": "תפקיד", "type": "text", "maxLength": 40, "required": true },
+          {
+            "key": "address",
+            "label": "כתובת הקליניקה",
+            "type": "group",
+            "fields": [
+              { "key": "street", "label": "רחוב ומספר", "type": "text", "maxLength": 40, "required": true },
+              { "key": "city", "label": "עיר", "type": "text", "maxLength": 30, "required": true }
+            ]
+          },
+          {
+            "key": "phone",
+            "label": "טלפון",
+            "type": "group",
+            "fields": [
+              { "key": "display", "label": "כפי שמוצג באתר", "type": "text", "ltr": true, "maxLength": 20, "placeholder": "052-000-0000", "required": true },
+              { "key": "e164", "label": "לחיוג", "type": "text", "ltr": true, "maxLength": 16, "placeholder": "+972520000000", "help": "בפורמט בינלאומי: ‎+972 ואחריו המספר בלי האפס.", "required": true }
+            ]
+          },
+          {
+            "key": "whatsapp",
+            "label": "וואטסאפ",
+            "type": "group",
+            "fields": [
+              { "key": "number", "label": "מספר", "type": "text", "ltr": true, "maxLength": 15, "placeholder": "972520000000", "help": "ספרות בלבד: 972 ואחריו המספר בלי האפס.", "required": true },
+              { "key": "message", "label": "הודעה פותחת", "type": "text", "multiline": true, "maxLength": 200, "help": "הטקסט שכבר כתוב בצ׳אט כשלוחצים על כפתור הוואטסאפ." }
+            ]
+          },
+          {
+            "key": "hours",
+            "label": "שעות פעילות",
+            "type": "list",
+            "itemLabel": "שורה",
+            "item": { "key": "line", "label": "שורה", "type": "text", "maxLength": 60, "placeholder": "א׳–ה׳ 8:00–19:00" },
+            "max": 7,
+            "help": "שורה לכל טווח ימים. מופיע ביצירת קשר."
+          },
+          {
+            "key": "google",
+            "label": "כרטיס גוגל",
+            "type": "group",
+            "fields": [
+              { "key": "rating", "label": "דירוג", "type": "number", "min": 1, "max": 5, "step": 0.1, "help": "מופיע בפתיח במקום {{rating}}." },
+              { "key": "reviewCount", "label": "מספר ביקורות", "type": "number", "min": 0, "step": 1, "help": "מופיע בפתיח במקום {{reviewCount}}." },
+              { "key": "profileUrl", "label": "קישור ישיר לכרטיס", "type": "text", "ltr": true, "maxLength": 500, "placeholder": "https://maps.app.goo.gl/…", "help": "לאן מובילים ״לכל הביקורות בגוגל״ ושורת הדירוג. ריק = חיפוש בגוגל מפות לפי שורת החיפוש." },
+              { "key": "profileQuery", "label": "שורת חיפוש לכרטיס", "type": "text", "maxLength": 100 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "seo",
+        "label": "גוגל ושיתופים",
+        "type": "group",
+        "fields": [
+          { "key": "title", "label": "כותרת בגוגל", "type": "text", "maxLength": 70, "required": true, "help": "עד 60 תווים. הקישור הכחול בתוצאות החיפוש, וגם הכותרת בשיתוף בוואטסאפ." },
+          { "key": "description", "label": "תיאור בגוגל", "type": "text", "multiline": true, "maxLength": 170, "required": true, "help": "משפט או שניים, עד 155 תווים." },
+          { "key": "themeColor", "label": "צבע סרגל הדפדפן בטלפון", "type": "color", "scope": "design", "presets": ["#F4EDE3"] }
+        ]
+      },
+      {
+        "key": "ui",
+        "label": "טקסטים קטנים באתר",
+        "type": "group",
+        "help": "כפתורים, כותרות קטנות והסברים לקוראי מסך. {{name}}, {{title}}, {{address}}, {{phone}} מתמלאים מפרטי העסק.",
+        "fields": [
+          { "key": "headerCta", "label": "כפתור בכותרת העליונה", "type": "text", "maxLength": 16 },
+          { "key": "dockCta", "label": "כפתור וואטסאפ בפס התחתון (טלפון)", "type": "text", "maxLength": 28 },
+          { "key": "dockPhone", "label": "כפתור טלפון בפס התחתון (לקוראי מסך)", "type": "text", "maxLength": 20 },
+          { "key": "hoursLabel", "label": "כותרת שעות פעילות", "type": "text", "maxLength": 16 },
+          { "key": "navigateLabel", "label": "כותרת הגעה", "type": "text", "maxLength": 16 },
+          { "key": "waze", "label": "קישור לוויז", "type": "text", "maxLength": 24 },
+          { "key": "googleMaps", "label": "קישור לגוגל מפות", "type": "text", "maxLength": 24 },
+          { "key": "footerLine", "label": "שורת התחתית", "type": "text", "maxLength": 80 },
+          { "key": "worriesProgress", "label": "המילה בין המספרים (״3 מתוך 9״)", "type": "text", "maxLength": 10 },
+          { "key": "skipLink", "label": "קישור דילוג לתוכן (לקוראי מסך)", "type": "text", "maxLength": 30 },
+          { "key": "navLabel", "label": "שם התפריט (לקוראי מסך)", "type": "text", "maxLength": 30 },
+          { "key": "mapTitle", "label": "שם המפה (לקוראי מסך)", "type": "text", "maxLength": 60 },
+          { "key": "reviewsRailLabel", "label": "רצועת הביקורות (לקוראי מסך)", "type": "text", "maxLength": 60 },
+          { "key": "opensInNewTab", "label": "״נפתח בחלון חדש״ (לקוראי מסך)", "type": "text", "maxLength": 30 },
+          { "key": "worriesIndexLabel", "label": "רשימת הנושאים (לקוראי מסך)", "type": "text", "maxLength": 30 }
+        ]
+      }
+    ]
+  },
+  "collections": {
+    "fields": [
+      {
+        "key": "media",
+        "label": "תמונות",
+        "type": "list",
+        "itemLabel": "תמונה",
+        "titleKey": "alt",
+        "idKey": "id",
+        "media": true,
+        "fields": [
+          { "key": "alt", "label": "מה רואים בתמונה", "type": "text", "maxLength": 200, "help": "בלי שמות של ילדים. מוקרא לקוראי מסך ומופיע בגוגל." },
+          { "key": "consent", "label": "אושרה לפרסום", "type": "boolean", "help": "תמונה מופיעה באתר רק אחרי אישור של ליאור ושל ההורים." },
+          { "key": "consentNote", "label": "מי אישר ומתי", "type": "text", "maxLength": 200 },
+          { "key": "focal", "label": "נקודת מיקוד", "type": "focal", "help": "החלק שנשאר בתמונה כשהיא נחתכת לקשת או לריבוע." },
+          { "key": "source", "label": "מקור התמונה", "type": "text", "maxLength": 100 }
+        ]
+      },
+      {
+        "key": "reviews",
+        "label": "ביקורות",
+        "type": "list",
+        "itemLabel": "ביקורת",
+        "titleKey": "author",
+        "idKey": "id",
+        "fields": [
+          { "key": "author", "label": "שם", "type": "text", "maxLength": 40, "help": "שם פרטי בלבד." },
+          { "key": "rating", "label": "כוכבים", "type": "number", "min": 1, "max": 5, "step": 1 },
+          { "key": "topic", "label": "נושא", "type": "text", "maxLength": 40, "help": "מופיע מעל הביקורת, למשל ״אילמות סלקטיבית״. אפשר להשאיר ריק." },
+          { "key": "text", "label": "הביקורת", "type": "text", "multiline": true, "maxLength": 1500, "help": "מילה במילה, בלי שמות ילדים. קיצור מסמנים ב-(...). שורה ריקה = פסקה חדשה." },
+          { "key": "excerpt", "label": "קטע קצר", "type": "text", "multiline": true, "maxLength": 300, "help": "לסקשן ״ציטוטים נבחרים״. ריק = הביקורת המלאה." },
+          { "key": "proves", "label": "למה נבחרה (פנימי)", "type": "text", "maxLength": 120, "help": "לא מוצג באתר." },
+          { "key": "source", "label": "מקור (פנימי)", "type": "text", "maxLength": 30, "ltr": true, "help": "לא מוצג באתר. למשל google." }
+        ]
+      }
+    ]
+  },
+  "sectionTypes": {
+    "hero": {
+      "label": "פתיח",
+      "description": "הדבר הראשון שרואים: כותרת, משפט, כפתור וואטסאפ ותמונה בקשת.",
+      "icon": "sparkles",
+      "max": 1,
+      "fields": [
+        { "key": "headline", "label": "כותרת", "type": "text", "maxLength": 70, "required": true, "help": "מילים בין כוכביות (*כך*) מקבלות את קו הליווי." },
+        {
+          "key": "headlineAlternatives",
+          "label": "ניסוחים חלופיים לכותרת",
+          "type": "list",
+          "itemLabel": "ניסוח",
+          "item": { "key": "text", "label": "ניסוח", "type": "text", "maxLength": 70 },
+          "max": 5,
+          "help": "לא מוצגים באתר. שמורים כדי לבחור ביניהם."
+        },
+        { "key": "subheadline", "label": "משפט פתיחה", "type": "text", "multiline": true, "maxLength": 200, "required": true },
+        {
+          "key": "cta",
+          "label": "כפתור",
+          "type": "group",
+          "required": true,
+          "fields": [
+            { "key": "label", "label": "טקסט הכפתור", "type": "text", "maxLength": 32 },
+            { "key": "action", "label": "לאן הכפתור מוביל", "type": "select", "options": [{ "value": "whatsapp", "label": "וואטסאפ" }, { "value": "phone", "label": "שיחת טלפון" }] }
+          ]
+        },
+        { "key": "phoneLine", "label": "שורה לפני מספר הטלפון", "type": "text", "maxLength": 20, "help": "ריק = בלי מספר טלפון מתחת לכפתור." },
+        { "key": "trust", "label": "שורת הדירוג", "type": "text", "maxLength": 60, "help": "{{rating}} ו-{{reviewCount}} מתמלאים מכרטיס הגוגל. ריק = בלי שורת דירוג." },
+        { "key": "image", "label": "תמונה", "type": "ref", "collection": "media" },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": {
+        "headline": "כותרת חדשה",
+        "subheadline": "משפט פתיחה.",
+        "cta": { "label": "לשיחת ייעוץ בוואטסאפ", "action": "whatsapp" },
+        "phoneLine": "או בטלפון"
+      }
+    },
+    "about": {
+      "label": "עליי",
+      "description": "מי ליאור: שם, תפקיד, כמה משפטים ותמונה.",
+      "icon": "user-round",
+      "max": 1,
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 30, "required": true },
+        { "key": "name", "label": "שם", "type": "text", "maxLength": 40, "required": true },
+        { "key": "role", "label": "תפקיד", "type": "text", "maxLength": 80 },
+        { "key": "body", "label": "טקסט", "type": "blocks" },
+        { "key": "footnote", "label": "הערה בסוף", "type": "text", "maxLength": 120 },
+        { "key": "image", "label": "תמונה", "type": "ref", "collection": "media" },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "heading": "עליי", "name": "ליאור יהודאי כהן", "body": ["פסקה ראשונה."], "nav": "עליי" }
+    },
+    "worries": {
+      "label": "מה מטריד אתכם",
+      "description": "המשפטים שהורים אומרים, כל אחד עם המונח המקצועי והסבר קצר. בגלילה מוצג משפט אחד בכל פעם.",
+      "icon": "list",
+      "max": 1,
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 30, "required": true },
+        {
+          "key": "items",
+          "label": "משפטים",
+          "type": "list",
+          "itemLabel": "משפט",
+          "titleKey": "term",
+          "min": 1,
+          "max": 12,
+          "required": true,
+          "fields": [
+            { "key": "said", "label": "מה ההורה אומר", "type": "text", "multiline": true, "maxLength": 80 },
+            { "key": "term", "label": "המונח המקצועי", "type": "text", "maxLength": 40 },
+            { "key": "note", "label": "הסבר קצר", "type": "text", "multiline": true, "maxLength": 140 }
+          ]
+        },
+        { "key": "closing", "label": "משפט סיום", "type": "text", "multiline": true, "maxLength": 120 },
+        {
+          "key": "cta",
+          "label": "כפתור",
+          "type": "group",
+          "fields": [
+            { "key": "label", "label": "טקסט הכפתור", "type": "text", "maxLength": 32 },
+            { "key": "action", "label": "לאן הכפתור מוביל", "type": "select", "options": [{ "value": "whatsapp", "label": "וואטסאפ" }, { "value": "phone", "label": "שיחת טלפון" }] }
+          ]
+        },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": {
+        "heading": "מה מטריד אתכם?",
+        "items": [{ "said": "מה ההורה אומר", "term": "המונח המקצועי", "note": "הסבר קצר." }],
+        "cta": { "label": "לכתוב לי בוואטסאפ", "action": "whatsapp" }
+      }
+    },
+    "method": {
+      "label": "איך אני עובדת",
+      "description": "שלוש-ארבע נקודות על הגישה, עם תמונה.",
+      "icon": "list",
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 30, "required": true },
+        {
+          "key": "points",
+          "label": "נקודות",
+          "type": "list",
+          "itemLabel": "נקודה",
+          "titleKey": "lead",
+          "min": 1,
+          "max": 6,
+          "required": true,
+          "fields": [
+            { "key": "lead", "label": "פתיח מודגש", "type": "text", "maxLength": 30 },
+            { "key": "body", "label": "הסבר", "type": "text", "multiline": true, "maxLength": 300, "help": "שורה ריקה = פסקה חדשה." }
+          ]
+        },
+        { "key": "formats", "label": "שורת סיום", "type": "text", "multiline": true, "maxLength": 140 },
+        { "key": "image", "label": "תמונה", "type": "ref", "collection": "media" },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "heading": "איך אני עובדת", "points": [{ "lead": "פתיח.", "body": "הסבר." }] }
+    },
+    "steps": {
+      "label": "איך מתחילים",
+      "description": "שלבים ממוספרים עם קו שעובר ביניהם.",
+      "icon": "list",
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 30, "required": true },
+        { "key": "lead", "label": "משפט פתיחה", "type": "text", "multiline": true, "maxLength": 120 },
+        {
+          "key": "items",
+          "label": "שלבים",
+          "type": "list",
+          "itemLabel": "שלב",
+          "titleKey": "title",
+          "min": 1,
+          "max": 5,
+          "required": true,
+          "fields": [
+            { "key": "title", "label": "שלב", "type": "text", "maxLength": 40 },
+            { "key": "body", "label": "פירוט", "type": "text", "multiline": true, "maxLength": 120 }
+          ]
+        },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "heading": "איך מתחילים", "items": [{ "title": "שלב ראשון" }, { "title": "שלב שני" }, { "title": "שלב שלישי" }] }
+    },
+    "gallery": {
+      "label": "תמונות מהקליניקה",
+      "description": "רשת תמונות: שתיים רחבות למעלה, השאר שלוש בשורה. תמונה בלי אישור פרסום לא מוצגת.",
+      "icon": "images",
+      "fields": [
+        { "key": "label", "label": "כותרת", "type": "text", "maxLength": 40 },
+        { "key": "items", "label": "תמונות", "type": "list", "itemLabel": "תמונה", "item": { "key": "photo", "label": "תמונה", "type": "ref", "collection": "media" }, "min": 1, "max": 11, "required": true },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "label": "כאן נפגשים", "items": ["board-game", "reading-together"] }
+    },
+    "reviewList": {
+      "label": "ביקורות",
+      "description": "רצועה נגללת של ביקורות מספריית הביקורות.",
+      "icon": "quote",
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 40, "required": true },
+        { "key": "items", "label": "ביקורות להצגה", "type": "list", "itemLabel": "ביקורת", "item": { "key": "review", "label": "ביקורת", "type": "ref", "collection": "reviews" }, "min": 1, "max": 20, "required": true },
+        { "key": "moreLabel", "label": "קישור לכל הביקורות בגוגל", "type": "text", "maxLength": 30, "help": "ריק = בלי קישור." },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "heading": "מה ההורים מספרים", "items": ["bar", "noam"], "moreLabel": "לכל הביקורות בגוגל" }
+    },
+    "reviewHighlights": {
+      "label": "ציטוטים נבחרים",
+      "description": "כמה ציטוטים קצרים מתוך ביקורות, אחד מתחת לשני.",
+      "icon": "quote",
+      "fields": [
+        { "key": "label", "label": "כותרת", "type": "text", "maxLength": 40 },
+        {
+          "key": "items",
+          "label": "ציטוטים",
+          "type": "list",
+          "itemLabel": "ציטוט",
+          "titleKey": "review",
+          "min": 1,
+          "max": 6,
+          "required": true,
+          "fields": [
+            { "key": "review", "label": "ביקורת", "type": "ref", "collection": "reviews" },
+            { "key": "use", "label": "מה להציג", "type": "select", "options": [{ "value": "excerpt", "label": "הקטע הקצר" }, { "value": "text", "label": "הביקורת המלאה" }] }
+          ]
+        },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "label": "מה ההורים אומרים", "items": [{ "review": "shiran", "use": "excerpt" }] }
+    },
+    "faq": {
+      "label": "שאלות נפוצות",
+      "description": "שאלות ותשובות בקבוצות. תשובה שמחכה למילוי מוצגת פתוחה.",
+      "icon": "circle-help",
+      "fields": [
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 30, "required": true },
+        { "key": "intro", "label": "משפט פתיחה", "type": "text", "multiline": true, "maxLength": 100 },
+        {
+          "key": "groups",
+          "label": "קבוצות",
+          "type": "list",
+          "itemLabel": "קבוצה",
+          "titleKey": "title",
+          "min": 1,
+          "max": 8,
+          "required": true,
+          "fields": [
+            { "key": "title", "label": "שם הקבוצה", "type": "text", "maxLength": 40 },
+            {
+              "key": "items",
+              "label": "שאלות",
+              "type": "list",
+              "itemLabel": "שאלה",
+              "titleKey": "q",
+              "max": 15,
+              "fields": [
+                { "key": "q", "label": "שאלה", "type": "text", "maxLength": 140 },
+                { "key": "a", "label": "תשובה", "type": "blocks" }
+              ]
+            }
+          ]
+        },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": { "heading": "שאלות נפוצות", "groups": [{ "title": "קבוצה ראשונה", "items": [{ "q": "שאלה?", "a": ["תשובה."] }] }] }
+    },
+    "contact": {
+      "label": "יצירת קשר",
+      "description": "הכתובת, כפתור וואטסאפ, טלפון, שעות, ניווט ומפה.",
+      "icon": "mail",
+      "max": 1,
+      "fields": [
+        { "key": "label", "label": "כותרת קטנה", "type": "text", "maxLength": 30 },
+        { "key": "heading", "label": "כותרת", "type": "text", "maxLength": 60, "required": true, "help": "{{address}} מתמלא מכתובת הקליניקה." },
+        { "key": "lead", "label": "משפט", "type": "text", "multiline": true, "maxLength": 120 },
+        {
+          "key": "cta",
+          "label": "כפתור",
+          "type": "group",
+          "required": true,
+          "fields": [
+            { "key": "label", "label": "טקסט הכפתור", "type": "text", "maxLength": 32 },
+            { "key": "action", "label": "לאן הכפתור מוביל", "type": "select", "options": [{ "value": "whatsapp", "label": "וואטסאפ" }, { "value": "phone", "label": "שיחת טלפון" }] }
+          ]
+        },
+        { "key": "phoneLine", "label": "שורה לפני מספר הטלפון", "type": "text", "maxLength": 20, "help": "ריק = בלי מספר טלפון מתחת לכפתור." },
+        { "key": "showMap", "label": "להציג מפה", "type": "boolean", "scope": "design" },
+        { "key": "nav", "label": "שם בתפריט", "type": "text", "maxLength": 20, "help": "ריק = לא מופיע בתפריט." }
+      ],
+      "preset": {
+        "label": "יצירת קשר",
+        "heading": "{{address}}",
+        "cta": { "label": "לשיחת ייעוץ בוואטסאפ", "action": "whatsapp" },
+        "phoneLine": "או בטלפון",
+        "showMap": true,
+        "nav": "יצירת קשר"
+      }
+    }
+  }
+}
