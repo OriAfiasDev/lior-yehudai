@@ -14,10 +14,18 @@ npm run build   # production: render → .render/, then minify + self-host Googl
 Pushing to `main` deploys to GitHub Pages (`.github/workflows/deploy.yml`). In CI, `SITE_URL` is
 the Pages URL and becomes the canonical / og:url / og:image base unless `seo.siteUrl` is set.
 
+**The live site's content comes from afias studio**, not from `content/` (see below). Locally the
+commands above still read `content/`; to build what is published in the studio:
+
+```bash
+CONTENT_SOURCE=http CONTENT_URL=$STUDIO_URL/api/v1/sites/lior-yehudai npm run build
+```
+
 ## How it is put together
 
 ```
-content/                 ← everything editable. Today: JSON files. Later: the database.
+afias/blueprint.json     ← what the client can edit in the studio (sections, fields, collections)
+content/                 ← the content as it was when the studio was connected (local dev, fallback)
   settings.json          business details, contact, Google rating, SEO, UI strings
   theme.json             colors, fonts, type scale, spacing, motion (styling decisions as data)
   pages/home.json        the page as an ordered list of typed sections
@@ -27,7 +35,7 @@ src/
   content/
     load.mjs             picks the content source and loads one page + collections
     sources/file.mjs     reads /content
-    sources/http.mjs     reads the same shapes from a content API
+    sources/http.mjs     reads the same shapes from a content API (the studio), with retries
     validate.mjs         rejects broken content before it reaches the page
   render/
     html.mjs             tagged template with auto-escaping
@@ -36,24 +44,38 @@ src/
     page.mjs             document shell: head/SEO/JSON-LD, header, footer, mobile dock
     sections/*.mjs       one template per section type, plus the registry (index.mjs)
     partials/            arch photo frame, buttons, icons, the line motif
+    preview.mjs          the studio editor's live preview: same templates, run in the browser
+  preview/boot.mjs       browser entry of /_afias/preview.html
   styles/main.css        hand-written; reads only var(--token), never a brand value
   scripts/main.js        progressive enhancement only
 public/assets/           fonts and static images, copied to dist/
 ```
 
-### Ready for a CMS later
+### Edited in afias studio
 
-The site never reads copy, images or brand values from templates. To move content into a
-database managed by a separate system:
+Lior edits the site in the studio (project `lior-yehudai`) and presses "פרסום". The studio sends
+a `repository_dispatch` (`afias-publish`); the Pages workflow builds plain static HTML from the
+published content and reports building → ready/failed back to the studio. Pushes to `main` build
+from the studio too, so a code change never brings back old copy from `content/`.
 
-1. **Expose the content** with the same shapes as the files in `content/` (or adapt the shapes in
-   `src/content/sources/http.mjs`, the only place that knows about the remote format).
-2. **Build from it:** `CONTENT_SOURCE=http CONTENT_URL=https://… CONTENT_TOKEN=… npm run build`.
-   Trigger that from a CMS publish webhook (Netlify/Vercel/GitHub Actions build hooks all work).
-3. **Or render on request:** templates are pure functions with no Node APIs, so `renderPage()` can
-   run in an edge/serverless function, or in the browser for a live preview inside the CMS.
+- **Build:** `CONTENT_SOURCE=http`, `CONTENT_URL=$STUDIO_URL/api/v1/sites/$SITE_SLUG`. The studio
+  serves the same shapes as `content/` (settings, theme, pages/home, collections/*). If it can't be
+  reached (3 retries), the build fails and the live site stays as it was.
+- **Repo settings:** variables `STUDIO_URL` and `SITE_SLUG`, secret `AFIAS_DEPLOY_TOKEN` (from the
+  studio's connect step). When the studio moves, change `STUDIO_URL` and re-run the workflow.
+- **What is editable:** `afias/blueprint.json`. Keys it doesn't expose are kept as they are on every
+  save. Left in code on purpose: `locale`/`dir`, `business.clinic`/`audience` (not on the page),
+  `address.country` and `seo.ogImage` (JSON-LD and a file path), and the theme beyond colors and
+  corner radius (fonts are licensed and self-hosted, type scale and spacing are the design system).
+- **Live preview:** with `STUDIO_URL` set, the build adds `/_afias/preview.html` (noindex, linked
+  from nowhere): it renders the editor's draft with the same templates and stylesheet, plus
+  `data-afias-*` attributes for selecting and editing in place. Those attributes exist only there
+  (`createContext(data, { annotate: true })`); the production HTML doesn't change.
+  The studio's preview URL is `https://oriafiasdev.github.io/lior-yehudai/_afias/preview.html`
+  (the afias.dev domain forwards without the path).
+- Sections added in the studio get ids like `reviewList_k3x9a2b`, which the validator accepts.
 
-What the CMS gets to control:
+What the studio gets to control:
 
 | Data | Where | Notes |
 |---|---|---|
