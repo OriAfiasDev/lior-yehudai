@@ -5,6 +5,10 @@
 //   { "$missing": "what is missing" }  -> rendered as a visible [חסר: ...] slot and reported
 //   *words*                            -> words underlined with the hand-drawn line motif
 //   {{token}}                          -> replaced from business settings
+//
+// With { annotate: true } (the studio's live preview only) field() marks elements with the
+// data-afias-* attributes the editor uses to select and edit in place. In the production
+// build it returns '' everywhere, so the HTML is exactly the same.
 
 import { html, raw, escape } from './html.mjs';
 import { underline } from './partials/motif.mjs';
@@ -12,7 +16,7 @@ import { underline } from './partials/motif.mjs';
 export const isMissing = (v) => v != null && typeof v === 'object' && '$missing' in v;
 export const isEmpty = (v) => v == null || v === '' || (Array.isArray(v) && v.length === 0);
 
-export function createContext({ settings, theme, page, collections }) {
+export function createContext({ settings, theme, page, collections }, { annotate = false } = {}) {
   const gaps = [];
   const b = settings.business;
 
@@ -58,10 +62,21 @@ export function createContext({ settings, theme, page, collections }) {
     return isEmpty(value) ? '' : fill(String(value)).replace(/\*/g, '');
   };
 
+  // Preview only: `path` is the field inside the section's data (list items by their _id,
+  // e.g. "items.k3x9a2b.said"). A plain string without *line* marks or {{tokens}} can also
+  // be edited in place; pass it as `value` for that.
+  const field = (path, value) => {
+    if (!annotate) return '';
+    const inline = typeof value === 'string' && !/\*|\{\{/.test(value);
+    return raw(` data-afias-field="${escape(path)}"${inline ? ' data-afias-inline="text"' : ''}`);
+  };
+  const item = (listPath, entry, i) => `${listPath}.${entry?._id ?? i}`;
+
   // Multi-paragraph text: an array, or a string with blank lines between paragraphs.
-  const paras = (value, className) => {
+  const paras = (value, className, path) => {
     const list = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\n\s*\n/) : [value];
-    return list.map((p) => html`<p${className ? raw(` class="${className}"`) : ''}>${t(p)}</p>`);
+    const single = list.length === 1 ? value : undefined;
+    return list.map((p) => html`<p${className ? raw(` class="${className}"`) : ''}${path ? field(path, single) : ''}>${t(p)}</p>`);
   };
 
   const ui = (key) => t(settings.ui?.[key] ?? '');
@@ -95,6 +110,7 @@ export function createContext({ settings, theme, page, collections }) {
     settings,
     theme,
     page,
+    annotate,
     business: b,
     tokens,
     links,
@@ -102,6 +118,8 @@ export function createContext({ settings, theme, page, collections }) {
     t,
     plain,
     paras,
+    field,
+    item,
     ui,
     uiPlain,
     gap,

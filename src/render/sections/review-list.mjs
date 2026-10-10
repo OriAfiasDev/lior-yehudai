@@ -7,14 +7,14 @@ export default {
   render: (s, ctx) => html`
 <section class="reviews" id="${s.id}" aria-labelledby="${s.id}-title">
   <div class="wrap reviews-head">
-    <h2 class="section-title" id="${s.id}-title">${ctx.t(s.heading)}</h2>
+    <h2 class="section-title" id="${s.id}-title"${ctx.field('heading', s.heading)}>${ctx.t(s.heading)}</h2>
     ${s.moreLabel
       ? html`<a class="text-link" href="${ctx.href('googleReviews')}" target="_blank" rel="noopener">
-          <span>${ctx.t(s.moreLabel)}</span>${icon('arrow')}<span class="sr-only">${ctx.ui('opensInNewTab')}</span></a>`
+          <span${ctx.field('moreLabel', s.moreLabel)}>${ctx.t(s.moreLabel)}</span>${icon('arrow')}<span class="sr-only">${ctx.ui('opensInNewTab')}</span></a>`
       : ''}
   </div>
   <div class="wrap reviews-wrap">
-    <ul class="reviews-rail" role="list" tabindex="0" aria-label="${ctx.uiPlain('reviewsRailLabel')}">
+    <ul class="reviews-rail" role="list" tabindex="0" aria-label="${ctx.uiPlain('reviewsRailLabel')}"${ctx.field('items')}>
       ${s.items.map((id) => {
         const r = ctx.review(id);
         return html`<li class="review">

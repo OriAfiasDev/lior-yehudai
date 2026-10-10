@@ -13,16 +13,16 @@ function img(ctx, item, { sizes, eager = false, cover = false }) {
 
 // A photo in the arch frame (the doorway into Lior's room). Shows a marked slot until
 // the image exists AND publishing it was approved (consent).
-export function archFigure(ctx, mediaId, { className = '', eager = false, sizes = '(min-width: 60rem) 24rem, 72vw', caption } = {}) {
+export function archFigure(ctx, mediaId, { className = '', eager = false, sizes = '(min-width: 60rem) 24rem, 72vw', caption, path = 'image' } = {}) {
   const item = ctx.media(mediaId);
 
   if (!ready(item)) {
-    return html`<figure class="arch arch--empty ${className}">
+    return html`<figure class="arch arch--empty ${className}"${ctx.field(path)}>
       <span class="arch-gap">${ctx.gap({ $missing: item.missing ?? `תמונה: ${item.alt}` })}</span>
     </figure>`;
   }
 
-  return html`<figure class="arch ${className}">
+  return html`<figure class="arch ${className}"${ctx.field(path)}>
     ${img(ctx, item, { sizes, eager, cover: true })}
     ${caption ? html`<figcaption>${ctx.t(caption)}</figcaption>` : ''}
   </figure>`;

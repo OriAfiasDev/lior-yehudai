@@ -17,12 +17,12 @@ export default {
 <section class="contact" id="${s.id}" aria-labelledby="${s.id}-title" data-contact>
   <div class="wrap contact-grid">
     <div class="contact-main">
-      ${s.label ? html`<p class="label">${tick()}${ctx.t(s.label)}</p>` : ''}
-      <h2 class="contact-title" id="${s.id}-title">${ctx.t(s.heading)}</h2>
-      ${s.lead ? html`<p class="contact-lead">${ctx.t(s.lead)}</p>` : ''}
+      ${s.label ? html`<p class="label"${ctx.field('label', s.label)}>${tick()}${ctx.t(s.label)}</p>` : ''}
+      <h2 class="contact-title" id="${s.id}-title"${ctx.field('heading', s.heading)}>${ctx.t(s.heading)}</h2>
+      ${s.lead ? html`<p class="contact-lead"${ctx.field('lead', s.lead)}>${ctx.t(s.lead)}</p>` : ''}
       <div class="contact-actions">
         ${button(ctx, s.cta, { variant: 'inverse' })}
-        ${s.phoneLine ? html`<p class="phone-line">${ctx.t(s.phoneLine)} ${phoneLink(ctx, { className: 'phone-link phone-link--big' })}</p>` : ''}
+        ${s.phoneLine ? html`<p class="phone-line"${ctx.field('phoneLine')}>${ctx.t(s.phoneLine)} ${phoneLink(ctx, { className: 'phone-link phone-link--big' })}</p>` : ''}
       </div>
       <dl class="contact-meta">
         ${hasHours ? html`<div><dt>${icon('clock')}${ctx.ui('hoursLabel')}</dt><dd>${hoursHtml(ctx, b.hours)}</dd></div>` : ''}

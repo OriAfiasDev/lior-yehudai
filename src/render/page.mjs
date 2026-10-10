@@ -64,7 +64,7 @@ ${raw(css)}</style>
 </head>`;
 }
 
-function header(ctx, navItems) {
+export function header(ctx, navItems) {
   const b = ctx.business;
   return html`<header class="site-header" data-header>
   <div class="wrap header-inner">
@@ -91,7 +91,7 @@ const dock = (ctx) => html`<div class="dock" data-dock inert>
     ${icon('phone')}<span class="sr-only">${ctx.ui('dockPhone')} ${ctx.business.phone.display}</span></a>
 </div>`;
 
-const footer = (ctx) => html`<footer class="site-footer">
+export const footer = (ctx) => html`<footer class="site-footer">
   <div class="wrap footer-inner">
     ${loop()}
     <p>${ctx.ui('footerLine')}</p>

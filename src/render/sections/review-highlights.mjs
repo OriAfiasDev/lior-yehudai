@@ -7,8 +7,8 @@ export default {
   render: (s, ctx) => html`
 <section class="voices" id="${s.id}" aria-labelledby="${s.id}-title">
   <div class="wrap">
-    <h2 class="label" id="${s.id}-title">${tick()}${ctx.t(s.label)}</h2>
-    <ul class="voices-list" role="list">
+    <h2 class="label" id="${s.id}-title"${ctx.field('label', s.label)}>${tick()}${ctx.t(s.label)}</h2>
+    <ul class="voices-list" role="list"${ctx.field('items')}>
       ${s.items.map(({ review, use = 'excerpt' }) => {
         const r = ctx.review(review);
         return html`<li class="voice" data-reveal>

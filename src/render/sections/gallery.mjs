@@ -16,8 +16,8 @@ export default {
     return html`
 <section class="gallery" id="${s.id}" aria-labelledby="${s.id}-title">
   <div class="wrap">
-    <h2 class="label" id="${s.id}-title">${tick()}${ctx.t(s.label)}</h2>
-    <ul class="room-grid" role="list">
+    <h2 class="label" id="${s.id}-title"${ctx.field('label', s.label)}>${tick()}${ctx.t(s.label)}</h2>
+    <ul class="room-grid" role="list"${ctx.field('items')}>
       ${photos.map((img) => html`<li class="room-item">${img}</li>`)}
     </ul>
   </div>

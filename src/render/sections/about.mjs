@@ -12,12 +12,12 @@ export default {
   <div class="wrap about-grid">
     ${s.image ? archFigure(ctx, s.image, { className: 'about-figure', sizes: '(min-width: 60rem) 24rem, 8rem' }) : ''}
     <div class="about-head">
-      <h2 class="label" id="${s.id}-title">${tick()}${ctx.t(s.heading)}</h2>
-      <p class="about-name">${ctx.t(s.name)}</p>
-      ${s.role ? html`<p class="about-role">${ctx.t(s.role)}</p>` : ''}
+      <h2 class="label" id="${s.id}-title"${ctx.field('heading', s.heading)}>${tick()}${ctx.t(s.heading)}</h2>
+      <p class="about-name"${ctx.field('name', s.name)}>${ctx.t(s.name)}</p>
+      ${s.role ? html`<p class="about-role"${ctx.field('role', s.role)}>${ctx.t(s.role)}</p>` : ''}
     </div>
-    <div class="about-body" data-reveal>${ctx.paras(s.body ?? [])}</div>
-    ${s.footnote ? html`<p class="about-note">${ctx.t(s.footnote)}</p>` : ''}
+    <div class="about-body" data-reveal${ctx.field('body')}>${ctx.paras(s.body ?? [])}</div>
+    ${s.footnote ? html`<p class="about-note"${ctx.field('footnote', s.footnote)}>${ctx.t(s.footnote)}</p>` : ''}
   </div>
 </section>`,
 };

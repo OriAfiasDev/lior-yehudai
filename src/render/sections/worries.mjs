@@ -13,15 +13,16 @@ export default {
   <div class="worries-track">
     <div class="worries-stage">
       <div class="wrap worries-inner">
-        <h2 class="worries-title" id="${s.id}-title">${ctx.t(s.heading)}</h2>
+        <h2 class="worries-title" id="${s.id}-title"${ctx.field('heading', s.heading)}>${ctx.t(s.heading)}</h2>
         <ul class="worries-list" role="list">
-          ${s.items.map(
-            (item) => html`<li class="worry">
-              <p class="worry-said">${ctx.t(item.said)}</p>
-              <p class="worry-term">${tick()}${ctx.t(item.term)}</p>
-              ${item.note ? html`<p class="worry-note">${ctx.t(item.note)}</p>` : ''}
-            </li>`,
-          )}
+          ${s.items.map((item, i) => {
+            const at = ctx.item('items', item, i);
+            return html`<li class="worry">
+              <p class="worry-said"${ctx.field(`${at}.said`, item.said)}>${ctx.t(item.said)}</p>
+              <p class="worry-term"${ctx.field(`${at}.term`, item.term)}>${tick()}${ctx.t(item.term)}</p>
+              ${item.note ? html`<p class="worry-note"${ctx.field(`${at}.note`, item.note)}>${ctx.t(item.note)}</p>` : ''}
+            </li>`;
+          })}
         </ul>
         <ol class="worries-index" role="list" aria-label="${ctx.uiPlain('worriesIndexLabel')}">
           ${s.items.map((item, i) => html`<li><button type="button" data-worries-jump="${i}">${ctx.t(item.term)}</button></li>`)}
@@ -35,7 +36,7 @@ export default {
   </div>
   ${s.closing || s.cta
     ? html`<div class="wrap worries-close" data-reveal>
-        ${s.closing ? html`<p class="worries-closing">${ctx.t(s.closing)}</p>` : ''}
+        ${s.closing ? html`<p class="worries-closing"${ctx.field('closing', s.closing)}>${ctx.t(s.closing)}</p>` : ''}
         ${s.cta ? button(ctx, s.cta, { variant: 'quiet' }) : ''}
       </div>`
     : ''}
