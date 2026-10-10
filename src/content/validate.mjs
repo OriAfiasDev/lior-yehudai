@@ -33,7 +33,9 @@ export function validate({ settings, theme, page, collections }) {
   const ids = new Set();
   for (const [i, s] of (page.sections ?? []).entries()) {
     const where = `page "${page.id}" section #${i + 1} (${s.id ?? 'no id'})`;
-    if (!/^[a-z][a-z0-9-]*$/.test(s.id ?? '')) errors.push(`${where}: id must be lowercase latin, used as the #anchor`);
+    // Latin letters, digits, - and _: the id is the #anchor. Sections added in the studio
+    // get ids like "reviewList_k3x9a2b".
+    if (!/^[A-Za-z][A-Za-z0-9_-]*$/.test(s.id ?? '')) errors.push(`${where}: id must be latin letters, digits, - or _ (used as the #anchor)`);
     if (ids.has(s.id)) errors.push(`${where}: duplicate id`);
     ids.add(s.id);
     const def = sections[s.type];
