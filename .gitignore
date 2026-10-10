@@ -7,3 +7,5 @@ dist/
 public/assets/fonts/sigalit-*
 # the font vendor's license document
 licenses/
+# client handover documents (not part of the public site)
+handover/
