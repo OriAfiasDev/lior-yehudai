@@ -99,7 +99,9 @@ export const footer = (ctx) => html`<footer class="site-footer">
   </div>
 </footer>`;
 
-export function renderPage(data, { css, script }) {
+// `beacon` ({ src, endpoint }) adds the studio's visit counter: page views and clicks on
+// [data-cta] links, no cookies or identifiers.
+export function renderPage(data, { css, script, beacon }) {
   const ctx = createContext(data);
   const active = data.page.sections.filter((s) => s.enabled !== false);
   const body = active.map((s) => sections[s.type].render(s, ctx));
@@ -117,6 +119,7 @@ ${body}
 ${footer(ctx)}
 ${dock(ctx)}
 <script src="${script}" defer></script>
+${beacon ? html`<script src="${beacon.src}" data-endpoint="${beacon.endpoint}" defer></script>` : ''}
 </body>
 </html>
 `;

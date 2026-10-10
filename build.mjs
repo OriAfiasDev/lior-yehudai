@@ -5,6 +5,7 @@
 // SITE_URL  (env) is used as seo.siteUrl when the content does not set one, e.g. the Pages URL in CI.
 // STUDIO_URL (env) adds the afias studio editor's live preview, <out>/_afias/preview.html: it
 //           renders drafts in the browser with the same templates (src/render) and stylesheet.
+//           With SITE_SLUG too, the page gets the studio's visit counter (beacon.js).
 
 import { mkdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -61,8 +62,13 @@ async function main() {
   const errors = validate(data);
   if (errors.length) throw new Error(`Content is invalid:\n  - ${errors.join('\n  - ')}`);
 
+  const studio = process.env.STUDIO_URL?.replace(/\/+$/, '');
+  if (studio && !URL.canParse(studio)) throw new Error(`STUDIO_URL is not a URL: ${studio}`);
+  const slug = process.env.SITE_SLUG;
+  const beacon = studio && slug && { src: `${studio}/kit/v1/beacon.js`, endpoint: `${studio}/api/v1/sites/${encodeURIComponent(slug)}/events` };
+
   const css = minifyCss(await readFile(join(root, 'src/styles/main.css'), 'utf8'));
-  const rendered = renderPage(data, { css, script: 'assets/js/main.js' });
+  const rendered = renderPage(data, { css, script: 'assets/js/main.js', beacon });
   const pageHtml = rendered.html.replace(/\n\s+/g, '\n'); // template indentation only
   const { gaps } = rendered;
   if (strict && gaps.length) throw new Error(`Missing content, ${gaps.length} slots:\n  - ${gaps.join('\n  - ')}`);
@@ -75,9 +81,7 @@ async function main() {
   await mkdir(join(out, 'assets/img'), { recursive: true });
   await writeFile(join(out, 'assets/img/favicon.svg'), faviconSvg(data.theme.colors));
 
-  const studio = process.env.STUDIO_URL?.replace(/\/+$/, '');
   if (studio) {
-    if (!URL.canParse(studio)) throw new Error(`STUDIO_URL is not a URL: ${studio}`);
     await cp(join(root, 'src/render'), join(out, '_afias/render'), { recursive: true });
     await cp(join(root, 'src/preview/boot.mjs'), join(out, '_afias/boot.mjs'));
     await writeFile(join(out, '_afias/preview.html'), previewPage(data.settings, css, studio).toString());
@@ -88,6 +92,7 @@ async function main() {
 
   console.log(`Built ${relative(root, out)}/index.html from ${source.name} (${(pageHtml.length / 1024).toFixed(1)} KB)`);
   if (studio) console.log(`  studio preview: _afias/preview.html (${studio})`);
+  if (beacon) console.log(`  visit counter: ${beacon.endpoint}`);
   if (!quiet) {
     for (const w of warnings) console.log(`  warning: ${w}`);
     if (gaps.length) console.log(`  ${gaps.length} missing content slots:\n    - ${gaps.join('\n    - ')}`);
